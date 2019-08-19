@@ -1,10 +1,14 @@
 const Express = require("express");
 
+var bodyParser = require('body-parser');
+
 var app = new Express();
 
 app.set('view engine','ejs'); 
 
 app.use(Express.static(__dirname+"/public"));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 
 app.get('/',(req,res)=>{
     res.render('index');
@@ -98,6 +102,12 @@ books=[{
 
 app.get('/viewbook',(req,res)=>{
     res.render('viewbook',books);
+});
+
+app.post('/read',(req,res)=>{
+    var items=req.body;
+    res.render('read',{item:items});
+    
 });
 
 app.listen(process.env.PORT || 3456,()=>{

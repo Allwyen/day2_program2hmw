@@ -26,34 +26,34 @@
         <div class="row">
             <div class="col col-sm-3"></div>
             <div class="col col-12 col-sm-6">
-                    <form>
+                    <form action="/read" method="POST">
                         <div class="form-group">
                             <label for="">Title</label>
-                            <input type="text" class="form-control" id="" aria-describedby="" placeholder="Enter Book title">
+                            <input type="text" class="form-control" id="" name="utitle" aria-describedby="" placeholder="Enter Book title">
                         </div>
                         <div class="form-group">
                             <label for="">Author</label>
-                            <input type="text" class="form-control" id="" aria-describedby="" placeholder="Enter Author">
+                            <input type="text" class="form-control" id="" name="uauthor" aria-describedby="" placeholder="Enter Author">
                         </div>
                         <div class="form-group">
                             <label for="">Publisher</label>
-                            <input type="text" class="form-control" id="" aria-describedby="" placeholder="Enter Publisher Name">
+                            <input type="text" class="form-control" id="" name="upublisher" aria-describedby="" placeholder="Enter Publisher Name">
                         </div>
                         <div class="form-group">
                             <label for="">Date Of Publication</label>
-                            <input type="date" class="form-control" id="" aria-describedby="" placeholder="">
+                            <input type="date" class="form-control" id="" name="udop" aria-describedby="" placeholder="">
                         </div>
                         <div class="form-group">
                             <label for="">Distributer</label>
-                            <input type="text" class="form-control" id="" aria-describedby="" placeholder="Enter Distributer Name">
+                            <input type="text" class="form-control" id="" name="udistributer" aria-describedby="" placeholder="Enter Distributer Name">
                         </div>
                         <div class="form-group">
                             <label for="">Price</label>
-                            <input type="number" class="form-control" id="" aria-describedby="" placeholder="Enter Price">
+                            <input type="number" class="form-control" id="" name="uprice" aria-describedby="" placeholder="Enter Price">
                         </div>
                         <div class="form-group">
                             <label for="">Description</label>
-                            <textarea name="" id="" cols="30" rows="3" class="form-control" placeholder="Describe more here!!"></textarea>
+                            <textarea id="" cols="30" rows="3" class="form-control" name="udesc" placeholder="Describe more here!!"></textarea>
                         </div>
                        
                         <button type="submit" class="btn btn-primary">Add Book</button>
