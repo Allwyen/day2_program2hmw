@@ -16,7 +16,7 @@ app.use(Express.static(__dirname+"/public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-Mongoose.connect("mongodb://localhost:27017/librarydb");
+Mongoose.connect("mongodb+srv://mongodb:mongodb@mycluster-ucvz5.mongodb.net/librarydb?retryWrites=true&w=majority");
 
 const BookModel= Mongoose.model("book",{
     btitle:String,
