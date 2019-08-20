@@ -1,14 +1,32 @@
 const Express = require("express");
+const Mongoose = require('mongoose');
 
+var request = require('request');
 var bodyParser = require('body-parser');
 
+//Now creating a object for class Express called app
+
 var app = new Express();
+
+//Adding a middleware.EJS template engine
 
 app.set('view engine','ejs'); 
 
 app.use(Express.static(__dirname+"/public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+
+Mongoose.connect("mongodb://localhost:27017/librarydb");
+
+const BookModel= Mongoose.model("book",{
+    btitle:String,
+    bauthor:String,
+    bpublisher:String,
+    bdop:String,
+    bdistributer:String,
+    bprice:String,
+    bdesc:String
+});
 
 app.get('/',(req,res)=>{
     res.render('index');
@@ -100,14 +118,60 @@ books=[{
     'desc':'A second thought from Joseph'
 }];
 
-app.get('/viewbook',(req,res)=>{
-    res.render('viewbook',books);
+
+
+// app.get('/viewbook',(req,res)=>{
+//     res.render('viewbook',books);
+// });
+
+// app.post('/read',(req,res)=>{
+//     var items=req.body;
+//     res.render('read',{item:items});
+    
+// });
+
+app.post('/bookregister',(req,res)=>{
+    //var items=req.body;
+    //res.render('read',{item:items});
+
+    var book = new BookModel(req.body);
+    var result = book.save((error,data)=>{
+        if(error)
+        {
+            throw error;
+            res.send(error);
+        }
+        else
+        {
+            res.send("<script>alert('Book Successfully Inserted')</script><script>window.location.href='/addbook'</script>");
+        }
+    });
+
 });
 
-app.post('/read',(req,res)=>{
-    var items=req.body;
-    res.render('read',{item:items});
-    
+app.get('/bookall',(req,res)=>{
+
+    var result = BookModel.find((error,data)=>{
+        if(error)
+        {
+            throw error;
+            res.send(error);
+        }
+        else
+        {
+            res.send(data);
+        }
+    });
+});
+
+const APIurl = "http://localhost:3456/bookall";
+
+app.get('/viewbook',(req,res)=>{
+
+    request(APIurl,(error,response,body)=>{
+        var data = JSON.parse(body);
+        res.render('viewbook',{data:data});
+    });
 });
 
 app.listen(process.env.PORT || 3456,()=>{
