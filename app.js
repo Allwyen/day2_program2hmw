@@ -164,7 +164,7 @@ app.get('/bookall',(req,res)=>{
     });
 });
 
-const APIurl = "http://thebookshlf.herokuapp.com//bookall";
+const APIurl = "http://thebookshlf.herokuapp.com/bookall";
 
 app.get('/viewbook',(req,res)=>{
 
